@@ -23,7 +23,7 @@
 
       .CodeMirror {
         font-size: 20px;
-        line-height: 20px;
+        line-height: 30px;
       }
     </style>
   </head>
@@ -44,6 +44,14 @@ int getchar(void)
 }
     </textarea>
     <script>
+      CodeMirror.commands.save = function () {
+        // console.log(new Error());
+        alert("Saving");
+      };
+      CodeMirror.Vim.defineEx("!", "", function (cm, params) {
+        console.log("kkk");
+        CodeMirror.signal(cm, "my-event", "Nice");
+      });
       const myCm = document.getElementById("my-cm");
       const editor = CodeMirror.fromTextArea(myCm, {
         mode: "text/x-csrc",
@@ -55,6 +63,7 @@ int getchar(void)
         inputStyle: "contenteditable",
       });
       editor.setSize("600", "500");
+      console.log(editor);
       var keys = "";
       CodeMirror.on(editor, "vim-keypress", function (key) {
         keys = keys + key;
@@ -62,6 +71,9 @@ int getchar(void)
       CodeMirror.on(editor, "vim-command-done", function (e) {
         keys = "";
         console.log(e);
+      });
+      CodeMirror.on(editor, "my-event", function (e) {
+        console.log("Get the event", e);
       });
     </script>
   </body>
