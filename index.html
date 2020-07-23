@@ -48,10 +48,6 @@ int getchar(void)
         // console.log(new Error());
         alert("Saving");
       };
-      CodeMirror.Vim.defineEx("!", "", function (cm, params) {
-        console.log("kkk");
-        CodeMirror.signal(cm, "my-event", "Nice");
-      });
       const myCm = document.getElementById("my-cm");
       const editor = CodeMirror.fromTextArea(myCm, {
         mode: "text/x-csrc",
@@ -62,18 +58,14 @@ int getchar(void)
         showCursorWhenSelecting: true,
         inputStyle: "contenteditable",
       });
-      editor.setSize("600", "500");
-      console.log(editor);
-      var keys = "";
-      CodeMirror.on(editor, "vim-keypress", function (key) {
-        keys = keys + key;
-      });
-      CodeMirror.on(editor, "vim-command-done", function (e) {
-        keys = "";
-        console.log(e);
-      });
-      CodeMirror.on(editor, "my-event", function (e) {
-        console.log("Get the event", e);
+      editor.setSize(800, 600);
+      CodeMirror.on(editor, "save-run", function (e) {
+        console.log(
+          "%c Get the event: %c",
+          "background-color: #82ae46; color: #fff;padding:3px;box-sizing: border-box;border-radius: 3px;",
+          "",
+          e
+        );
       });
     </script>
   </body>

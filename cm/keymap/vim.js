@@ -5621,7 +5621,6 @@
             }
           }
         }
-        console.log(new Error());
         if (!commandName) {
           showConfirm(cm, 'Not an editor command ":' + input + '"');
           return;
