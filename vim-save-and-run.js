@@ -13,7 +13,7 @@
     CodeMirror.signal(
       cm,
       "save-run",
-      "Save & run" + "\n参数是：" + params.args || ""
+      "Save & run" + "\n参数是：" + params.args
     );
   });
 });
