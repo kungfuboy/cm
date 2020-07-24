@@ -10,7 +10,6 @@
 })(function (CodeMirror) {
   "use strict";
   CodeMirror.Vim.defineEx("!", "", function (cm, params) {
-    console.log(params);
     CodeMirror.signal(
       cm,
       "save-run",
